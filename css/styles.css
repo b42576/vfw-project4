@@ -1,0 +1,83 @@
+/* 
+    Document   : styles
+    Created on : Sep 12, 2013, 4:11:46 PM
+    Author     : Kevin J. Fry
+    Description: VFW1309 - Project 4 - Purpose of the stylesheet follows.
+*/
+
+body {
+    background-color:#CCFFFF; 
+    color:#000066; 
+    font-family:serif; 
+    font-size:medium; 
+    font-weight:normal; 
+    width: 90%; 
+    alignment-baseline: middle;
+    alignment-adjust: central;
+}
+p {
+    color:#000066; 
+    font-size:medium; 
+    font-family:sans-serif; 
+    background-color:#99FFFF; 
+    font-weight:normal; 
+    margin-left: 15px;
+}
+h1 {
+    font-size:xx-large; 
+    font-family:serif; 
+    font-weight:bold; 
+    alignment-baseline: central;
+    border-bottom: #000066;
+    border-width: medium;
+}
+h2 {
+    font-size:x-large; 
+    font-family:serif; 
+}
+label {
+    font-family:cursive; 
+    font-size:small; 
+    color:#660000;  
+    background-color:#FFCCFF;    
+    margin-left: 40px;
+}
+input {
+    font-family:cursive; 
+    font-size:small; 
+    color:#660000;  
+    background-color:#FFCCFF; 
+    border-style:ridge;
+    border-color:#FF0000;
+    }
+radio {
+    font-family:cursive; 
+    font-size:small; 
+    color:#660000; 
+    background-color:#FFCCFF; 
+    border-style:ridge; 
+    border-color:#FF0000;}
+select {
+    font-family:cursive; 
+    font-size:small; 
+    color:#660000; 
+    background-color:#FFCCFF; 
+    border-style:ridge; 
+    border-color:#FF0000; 
+}
+option {
+    font-family:cursive; 
+    font-size:small; 
+    color:#660000; 
+    background-color:#FFCCFF; 
+    border-style:ridge; 
+    border-color:#FF0000; 
+}
+textarea {
+    font-family:cursive; 
+    font-size:small; 
+    color:#660000; 
+    background-color:#FFCCFF; 
+    border-style:ridge; 
+    border-color:#FF0000; 
+}

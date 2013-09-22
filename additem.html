@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Kevin Fry
+VFW 1309
+Project 4
+-->
+<html>
+    <head>
+        <title>My Shopping Application: Add Pricebook Item</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="keywords" content="thisweeksad, pricebook, grocery shopping">
+        <meta name="description" content="Keep track of your shopping from your grocery shopping trips.">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    </head>
+    <body>
+        <h1>Add Pricebook Item</h1>
+        <nav>
+            <a href="#" id="clear" title="Clear Data">Clear Data</a> |
+            <a href="#" id="displayLink" title="Display Data">Display Data</a> |
+            <a href="additem.html" id="addNew" title="Add New Item" style="display: none;">Add New Item</a>
+        </nav>
+        <form action="#" method="post" id="pricebookForm">
+            <fieldset>
+                <legend>Pricebook Item</legend>
+                <ul id="errors"></ul>
+                <ul id="prodInfo">
+                    <li><label for="productBrand">Product Brand</label><input type="text" name="productBrand" id="productBrand"></li>
+                    <li><label for="productName">Product Name</label><input type="text" name="productName" id="productName"></li>
+                <li><label for="productDescription">Product Description</label><textarea name="productDescription" id="productDescription"></textarea><br />
+                <li><label for="productRating">Product Rating</label><input type="range" name="productRating" min="1" max="5" id="productRating"><br />
+                <li id="locations"><label for="location">Location/Store</label></li>
+                    <li><label for="price">Price</label>
+                        $<input type="text" name="price" id="price" size="6"></li>
+                    <li>Tax?
+                    <input type="radio" name="tax" value="Yes" id="tax"><label for="tax">Yes</label>
+                    <input type="radio" name="tax" value="No" id="notax"><label for="notax">No</label></li>
+                <li><label for="datePurchased">Date Purchased</label>
+                    <input type="date" name="datePurchased" id="datePurchased"></li>
+                <li><label for="size">Size</label>
+                    <input type="text" name="size" id="size"></li>
+                <li id="sizeTypes"><label for="sizeType">Size Type</label>
+                </li>
+                </ul>
+                <input type="hidden" name="formType" id="formType" value="add">
+                <button type="submit" id="submit">Add Item</button><br />
+            </fieldset>
+        </form>
+    <script src="js/main.js" type="text/javascript"></script>
+    </body>
+</html>
