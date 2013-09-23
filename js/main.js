@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", function(){
             }
         }
     }
-    
+    /*
     function getData(){
         var makeDiv = document.createElement('div');
         makeDiv.setAttribute("id", "items");
@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function(){
             var makeli = document.createElement('li');
         }
     }
-    
+    */
     function toggleControls(n){
         switch(n){
             case "on":
@@ -103,6 +103,7 @@ window.addEventListener("DOMContentLoaded", function(){
             item.sizeType           = ["Size Type:", $('sizeType').value];
             localStorage.setItem(id, JSON.stringify(item));
             alert("Item Added");
+            //window.location.reload();
     }
     
     function getData(){
@@ -124,6 +125,7 @@ window.addEventListener("DOMContentLoaded", function(){
             var value = localStorage.getItem(key);
             var obj = JSON.parse(value);
             var makeSubList = document.createElement('ul');
+            makeli.appendChild(makeSubList);
             for(var n in obj){
                 var makeSubli = document.createElement('li');
                 makeSubList.appendChild(makeSubli);
@@ -134,6 +136,7 @@ window.addEventListener("DOMContentLoaded", function(){
             makeItemLinks(localStorage.key(i), linksLi);
         }
     }
+    
     function makeItemLinks(key, linksLi){
         var editLink = document.createElement('a');
         editLink.href = "#";
@@ -203,7 +206,7 @@ window.addEventListener("DOMContentLoaded", function(){
             return false;
         }
     }
-    function validate(){
+    function validate(e){
         var getProductBrand = $('productBrand');
         var getProductName = $('productName');
         var getLocation = $('location');
@@ -255,10 +258,10 @@ window.addEventListener("DOMContentLoaded", function(){
                 txt.innerHTML = errorMessages[i];
                 errMsg.appendChild(txt);
             }
-            //e.preventDefault();
+            e.preventDefault();
             return false;
         }else{
-            storeData();
+            storeData(this.key);
         }
 
     }
