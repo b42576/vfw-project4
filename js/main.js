@@ -92,11 +92,11 @@ window.addEventListener("DOMContentLoaded", function(){
         // object properties contain array with the form label and input values
         var item = {};
             //item.store              = ["Store:", $('productBrand').value];
+            item.location           = ["Location:", $('location').value];
             item.productBrand       = ["Brand:", $('productBrand').value];
             item.productName        = ["Name:", $('productName').value];
             item.description        = ["Description:", $('productDescription').value];
             item.productRating      = ["Rating:", $('productRating').value];
-            item.location           = ["Location:", $('location').value];
             item.price              = ["Price:", $('price').value];
             item.tax                = ["Taxable:", taxValue];
             item.datePurchased      = ["Date:", $('datePurchased').value];
@@ -111,31 +111,33 @@ window.addEventListener("DOMContentLoaded", function(){
         toggleControls("on");
         if(localStorage.length === 0){
             alert("There are no items in your pricebook.");
-        }
-        var makeDiv = document.createElement('div');
-        makeDiv.setAttribute("id", "items");
-        var makeList = document.createElement('ul');
-        makeDiv.appendChild(makeList);
-        document.body.appendChild(makeDiv);
-        $('items').style.display = "block";
-        for(var i=0, len=localStorage.length; i<len;i++){
-            var makeli = document.createElement('li');
-            var linksLi = document.createElement('li');
-            makeList.appendChild(makeli);
-            var key = localStorage.key(i);
-            var value = localStorage.getItem(key);
-            var obj = JSON.parse(value);
-            var makeSubList = document.createElement('ul');
-            makeli.appendChild(makeSubList);
-            for(var n in obj){
-                var makeSubli = document.createElement('li');
-                makeSubList.appendChild(makeSubli);
-                var optSubText = obj[n][0]+" "+obj[n][i];
-                makeSubli.innerHTML = optSubText;
-                makeSubList.appendChild(linksLi);
+        } else {
+            var makeDiv = document.createElement('div');
+            makeDiv.setAttribute("id", "items");
+            var makeList = document.createElement('ul');
+            makeDiv.appendChild(makeList);
+            document.body.appendChild(makeDiv);
+            $('items').style.display = "block";
+            for(var i=0, len=localStorage.length; i<len;i++){
+                var makeli = document.createElement('li');
+                var linksLi = document.createElement('li');
+                makeList.appendChild(makeli);
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                var obj = JSON.parse(value);
+                var makeSubList = document.createElement('ul');
+                makeli.appendChild(makeSubList);
+                for(var n in obj){
+                    var makeSubli = document.createElement('li');
+                    makeSubList.appendChild(makeSubli);
+                    var optSubText = obj[n][0]+" "+obj[n][i];
+                    makeSubli.innerHTML = optSubText;
+                    makeSubList.appendChild(linksLi);
+                }
+                //makeItemLinks(localStorage.key(i), linksLi);
             }
             makeItemLinks(localStorage.key(i), linksLi);
-        }
+        }//end else
     }
     
     function makeItemLinks(key, linksLi){
@@ -267,13 +269,13 @@ window.addEventListener("DOMContentLoaded", function(){
         }
 
     }
-    var sizeTypes = ["--Select A Size Type--","Count","Each","Pack","Fluid Ounce","Ounce(s)","Pound(s)"],
+    var sizeTypes = ["--Select A Size Type--","Count","Each","Pack","Fluid Ounce","Fluid Ounces","Ounce","Ounces","Pound","Pounds"],
             stores = ["--Select A Store--","Shop Rite","Acme","Super Fresh","Giant","Target","Walmart"],
             sizeValue,
             taxValue,
             errMsg = $('errors');
-    makeTypes();
     makeStores();
+    makeTypes();
     
     var displayLink = $('displayPricebook');
     displayLink.addEventListener("click", getData);
