@@ -63,14 +63,14 @@ window.addEventListener("DOMContentLoaded", function(){
         switch(n){
             case "on":
                 $('pricebookForm').style.display = "none";
-                $('clear').style.display = "inline";
-                $('displayLink').style.display = "none";
+                $('clearPricebook').style.display = "inline";
+                $('displayPricebook').style.display = "none";
                 $('addNew').style.display = "inline";
             break;
             case "off":
                 $('pricebookForm').style.display = "block";
-                $('clear').style.display = "inline";
-                $('displayLink').style.display = "inline";
+                $('clearPricebook').style.display = "inline";
+                $('displayPricebook').style.display = "inline";
                 $('addNew').style.display = "inline";
                 $('items').style.display = "none";
             break;
@@ -91,6 +91,7 @@ window.addEventListener("DOMContentLoaded", function(){
         getSelectedRadio();
         // object properties contain array with the form label and input values
         var item = {};
+            //item.store              = ["Store:", $('productBrand').value];
             item.productBrand       = ["Brand:", $('productBrand').value];
             item.productName        = ["Name:", $('productName').value];
             item.description        = ["Description:", $('productDescription').value];
@@ -202,6 +203,7 @@ window.addEventListener("DOMContentLoaded", function(){
         if(localStorage.length === 0) {
             alert("There is nothing to clear.");
         }else{
+            localStorage.clear();
             window.location.reload();
             return false;
         }
@@ -273,9 +275,9 @@ window.addEventListener("DOMContentLoaded", function(){
     makeTypes();
     makeStores();
     
-    var displayLink = $('displayLink');
+    var displayLink = $('displayPricebook');
     displayLink.addEventListener("click", getData);
-    var clearLink = $('clear');
+    var clearLink = $('clearPricebook');
     clearLink.addEventListener("click", clearLocal);
     var save = $('submit');
     save.addEventListener("click", validate);
