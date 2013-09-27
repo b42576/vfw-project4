@@ -1,6 +1,7 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Kevin Fry
+ * Full Sail - VFW1309 Project 4
+ * Pricebook
  */
 
 
@@ -21,7 +22,7 @@ var json = {
         "location": ["Location:", "ShopRite"],
         "productBrand": ["Brand:", "Progresso"],
         "productName": ["Name:", "Soup"],
-        "description": ["Description:", "n/a"],
+        "description": ["Description:", ""],
         "productRating": ["Rating:", "3"],
         "price": ["Price:", "1.25"],
         "tax": ["Taxable:", "No"],
@@ -31,7 +32,7 @@ var json = {
     },
     "item3": {
         "location": ["Location:", "WalMart"],
-        "productBrand": ["Brand:", "Bush's"],
+        "productBrand": ["Brand:", "Bush\'s"],
         "productName": ["Name:", "Baked Beans"],
         "description": ["Description:", "Veg"],
         "productRating": ["Rating:", "5"],

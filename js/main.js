@@ -8,22 +8,8 @@ window.addEventListener("DOMContentLoaded", function(){
     function $(x){
         var theElement = document.getElementById(x);
         return theElement;
-    }
+    };
     
-    function makeTypes(){
-        var formTag = document.getElementsByTagName("form"),
-                selectLi = $('sizeTypes'),
-                makeSelect = document.createElement('select');
-                makeSelect.setAttribute("id", "sizeType");
-        for(var i=0, j=sizeTypes.length; i<j; i++){
-            var makeOption = document.createElement('option');
-            var optText = sizeTypes[i];
-            makeOption.setAttribute("value", optText);
-            makeOption.innerHTML = optText;
-            makeSelect.appendChild(makeOption);
-        }
-        selectLi.appendChild(makeSelect);
-    }
     function makeStores(){
         var formTag = document.getElementsByTagName("form"),
                 selectLi = $('locations'),
@@ -37,7 +23,22 @@ window.addEventListener("DOMContentLoaded", function(){
             makeSelect.appendChild(makeOption);
         }
         selectLi.appendChild(makeSelect);
-    }
+    };
+
+    function makeTypes(){
+        var formTag = document.getElementsByTagName("form"),
+                selectLi = $('sizeTypes'),
+                makeSelect = document.createElement('select');
+                makeSelect.setAttribute("id", "sizeType");
+        for(var i=0, j=sizeTypes.length; i<j; i++){
+            var makeOption = document.createElement('option');
+            var optText = sizeTypes[i];
+            makeOption.setAttribute("value", optText);
+            makeOption.innerHTML = optText;
+            makeSelect.appendChild(makeOption);
+        }
+        selectLi.appendChild(makeSelect);
+    };
     
     // find value of selected radio buttin
     function getSelectedRadio(){
@@ -47,7 +48,7 @@ window.addEventListener("DOMContentLoaded", function(){
                 taxValue = radios[i].value;
             }
         }
-    }
+    };
     /*
     function getData(){
         var makeDiv = document.createElement('div');
@@ -77,7 +78,7 @@ window.addEventListener("DOMContentLoaded", function(){
             default: return false;
                 
         }
-    }
+    };
     // not saving to localstorage.
     // submitting my work to find out why later on the next project
     function storeData(key){
@@ -105,40 +106,57 @@ window.addEventListener("DOMContentLoaded", function(){
             localStorage.setItem(id, JSON.stringify(item));
             alert("Item Added");
             //window.location.reload();
-    }
+    };
     
     function getData(){
         toggleControls("on");
         if(localStorage.length === 0){
-            alert("There are no items in your pricebook.");
-        } else {
-            var makeDiv = document.createElement('div');
-            makeDiv.setAttribute("id", "items");
-            var makeList = document.createElement('ul');
-            makeDiv.appendChild(makeList);
-            document.body.appendChild(makeDiv);
-            $('items').style.display = "block";
-            for(var i=0, len=localStorage.length; i<len;i++){
-                var makeli = document.createElement('li');
-                var linksLi = document.createElement('li');
-                makeList.appendChild(makeli);
-                var key = localStorage.key(i);
-                var value = localStorage.getItem(key);
-                var obj = JSON.parse(value);
-                var makeSubList = document.createElement('ul');
-                makeli.appendChild(makeSubList);
-                for(var n in obj){
-                    var makeSubli = document.createElement('li');
-                    makeSubList.appendChild(makeSubli);
-                    var optSubText = obj[n][0]+" "+obj[n][i];
-                    makeSubli.innerHTML = optSubText;
-                    makeSubList.appendChild(linksLi);
-                }
-                //makeItemLinks(localStorage.key(i), linksLi);
+            autoFillData();
+            alert("There are no items in your pricebook, so we're adding some for you.");
+        }
+        var makeDiv = document.createElement('div');
+        makeDiv.setAttribute("id", "items");
+        var makeList = document.createElement('ul');
+        makeDiv.appendChild(makeList);
+        document.body.appendChild(makeDiv);
+        $('items').style.display = "block";
+        for(var i=0, len=localStorage.length; i<len;i++){
+            var makeLi = document.createElement('li');
+            var linksLi = document.createElement('li');
+            makeList.appendChild(makeLi);
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            var obj = JSON.parse(value);
+            var makeSubList = document.createElement('ul');
+            makeLi.appendChild(makeSubList);
+            getImage(obj.location[1], makeSubList);
+            for(var n in obj){
+                var makeSubLi = document.createElement('li');
+                makeSubList.appendChild(makeSubLi);
+                var optSubText = obj[n][0]+" "+obj[n][i];
+                makeSubLi.innerHTML = optSubText;
+                makeSubList.appendChild(linksLi);
             }
             makeItemLinks(localStorage.key(i), linksLi);
-        }//end else
-    }
+        }
+        //makeItemLinks(localStorage.key(i), linksLi);
+
+    };
+    
+    function getImage(storeName, makeSubList){
+        var imageLi = document.createElement('li');
+        makeSubList.appendChild(imageLi);
+        var newImg = document.createElement('img');
+        var setSrc = newImg.setAttribute("src", "img/"+storeName+".png");
+        imageLi.appendChild(newImg);
+    };
+    
+    function autoFillData(){
+        for(var n in json){
+            var id = Math.floor(Math.random()*100000001);
+            localStorage.setItem(id, JSON.stringify(json[n]));
+        }
+    };
     
     function makeItemLinks(key, linksLi){
         var editLink = document.createElement('a');
@@ -159,7 +177,7 @@ window.addEventListener("DOMContentLoaded", function(){
         deleteLink.addEventListener("click",deleteItem);
         deleteLink.innerHTML = deleteText;
         linksLi.appendChild(deleteLink);
-    }
+    };
     function editItem(){
         var value = localStorage.getItem(this.key);
         var item = JSON.parse(value);
@@ -189,7 +207,7 @@ window.addEventListener("DOMContentLoaded", function(){
         editSubmit.addEventListener("click", validate);
         editSubmit.key = this.key;
 
-    }
+    };
     
     function deleteItem(){
         var ask = confirm("Are you sure you want to delete this item?");
@@ -200,7 +218,7 @@ window.addEventListener("DOMContentLoaded", function(){
         }else{
             alert("Item was NOT deleted.");
         }
-    }
+    };
     function clearLocal(){
         if(localStorage.length === 0) {
             alert("There is nothing to clear.");
@@ -209,12 +227,12 @@ window.addEventListener("DOMContentLoaded", function(){
             window.location.reload();
             return false;
         }
-    }
+    };
     function validate(e){
         var getProductBrand = $('productBrand');
         var getProductName = $('productName');
         var getLocation = $('location');
-        var getPrice = $('price');
+        //var getPrice = $('price');
         var getSizeTypes = $('sizeType');
         
         errMsg.innerHTML = "";
@@ -251,7 +269,7 @@ window.addEventListener("DOMContentLoaded", function(){
         }
         */
         if(getSizeTypes.value === "--Select A Size Type--"){
-            var sizeTypeError = "Please select a store";
+            var sizeTypeError = "Please select a size";
             getSizeTypes.style.border = "1px dashed red";
             errorMessages.push(sizeTypeError);
         }
@@ -268,9 +286,9 @@ window.addEventListener("DOMContentLoaded", function(){
             storeData(this.key);
         }
 
-    }
+    };
     var sizeTypes = ["--Select A Size Type--","Count","Each","Pack","Fluid Ounce","Fluid Ounces","Ounce","Ounces","Pound","Pounds"],
-            stores = ["--Select A Store--","Shop Rite","Acme","Super Fresh","Giant","Target","Walmart"],
+            stores = ["--Select A Store--","ShopRite","Acme","SuperFresh","Giant","Target","WalMart"],
             sizeValue,
             taxValue,
             errMsg = $('errors');
@@ -283,7 +301,4 @@ window.addEventListener("DOMContentLoaded", function(){
     clearLink.addEventListener("click", clearLocal);
     var save = $('submit');
     save.addEventListener("click", validate);
-    
-    
-    
 });
