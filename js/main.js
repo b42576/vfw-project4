@@ -133,7 +133,7 @@ window.addEventListener("DOMContentLoaded", function(){
             for(var n in obj){
                 var makeSubLi = document.createElement('li');
                 makeSubList.appendChild(makeSubLi);
-                var optSubText = obj[n][0]+" "+obj[n][i];
+                var optSubText = obj[n][0]+" "+obj[n][1];
                 makeSubLi.innerHTML = optSubText;
                 makeSubList.appendChild(linksLi);
             }
@@ -182,11 +182,11 @@ window.addEventListener("DOMContentLoaded", function(){
         var value = localStorage.getItem(this.key);
         var item = JSON.parse(value);
         toggleControls("off");
+        $('location').value = item.location[1];
         $('productBrand').value = item.productBrand[1];
         $('productName').value = item.productName[1];
         $('productDescription').value = item.description[1];
         $('productRating').value = item.productRating[1];
-        $('location').value = item.location[1];
         $('price').value = item.price[1];
         //item.tax                = ["Taxable?", taxValue];
         var radios = document.forms[0].tax;
